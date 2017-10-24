@@ -1,35 +1,54 @@
-/*
- *
- *  * Copyright (C) 2014 Antonio Leiva Gordillo.
- *  *
- *  * Licensed under the Apache License, Version 2.0 (the "License");
- *  * you may not use this file except in compliance with the License.
- *  * You may obtain a copy of the License at
- *  *
- *  *      http://www.apache.org/licenses/LICENSE-2.0
- *  *
- *  * Unless required by applicable law or agreed to in writing, software
- *  * distributed under the License is distributed on an "AS IS" BASIS,
- *  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  * See the License for the specific language governing permissions and
- *  * limitations under the License.
- *
- */
-
 package com.mvp.interactor;
 
-public interface LoginInteractor {
+import android.os.Handler;
+import android.text.TextUtils;
 
-    interface OnLoginFinishedListener {
-        void onUsernameError(String error);
+import com.mvp.MvpApplication;
+import com.mvp.model.User;
+import com.mvp.networking.ConnectionUtil;
+import com.mvp.networking.MvpApi;
+import com.mvp.networking.MvpResponse;
+import com.mvp.prefrences.MvpPreferencesManager;
 
-        void onPasswordError(String error);
+import java.net.HttpURLConnection;
 
-        void onLoginSuccess();
+public class LoginInteractor {
 
-        void onLoginFail();
+    public boolean login(final String username, final String password) {
+        boolean isSuccess=false ;
+        // Mock login. I'm creating a handler to delay the answer a couple of seconds
+
+        final User user=new User(username,password);
+
+
+        if (username.equals("Atiq") && password.equals("Alam")){
+            MvpPreferencesManager.getInstance().setLogin(true);
+            isSuccess =true;
+        }else {
+            isSuccess =false;
+        }
+
+        /*
+            webservice call for login user
+         */
+        /*new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                MvpApi mvpApi = MvpApplication.getInstance().getMvpApi();
+                MvpResponse mvpResponse= ConnectionUtil.execute(mvpApi.login(user));
+
+
+                if (mvpResponse.getResponseCode()== HttpURLConnection.HTTP_OK){
+                    isSuccess =true;
+                }else{
+                    isSuccess =false;
+                }
+            }
+        });*/
+
+        return isSuccess;
     }
 
-    void login(String username, String password, OnLoginFinishedListener listener);
+
 
 }

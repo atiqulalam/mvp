@@ -29,7 +29,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.mvp.R;
-import com.mvp.interactor.LoginInteractorImpl;
+import com.mvp.interactor.LoginInteractor;
 import com.mvp.interactor.presenter.LoginPresenter;
 import com.mvp.interactor.presenter.LoginPresenterImpl;
 import com.mvp.prefrences.MvpPreferencesManager;
@@ -57,7 +57,7 @@ public class LoginActivity extends Activity implements LoginView, View.OnClickLi
             navigateToHome();
         }
 
-        presenter = new LoginPresenterImpl(this,new LoginInteractorImpl());
+        presenter = new LoginPresenterImpl(this,new LoginInteractor());
     }
 
     @Override
@@ -99,12 +99,12 @@ public class LoginActivity extends Activity implements LoginView, View.OnClickLi
     }
 
     @Override
-    public String getetUserName() {
+    public String getUserName() {
         return username.getText().toString().trim();
     }
 
     @Override
-    public String getetPassword() {
+    public String getPassword() {
         return password.getText().toString().trim();
     }
 

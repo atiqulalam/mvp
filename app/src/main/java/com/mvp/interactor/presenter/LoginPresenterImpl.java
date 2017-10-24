@@ -19,17 +19,15 @@
 package com.mvp.interactor.presenter;
 
 import android.text.TextUtils;
-import com.mvp.interactor.LoginInteractorImpl;
-import com.mvp.model.User;
-import com.mvp.prefrences.MvpPreferencesManager;
+import com.mvp.interactor.LoginInteractor;
 import com.mvp.view.LoginView;
 
 public class LoginPresenterImpl implements LoginPresenter/*, LoginInteractor.OnLoginFinishedListener*/ {
 
     private LoginView loginView;
-    private LoginInteractorImpl loginInteractor;
+    private LoginInteractor loginInteractor;
 
-    public LoginPresenterImpl(LoginView loginView, LoginInteractorImpl loginInteractor) {
+    public LoginPresenterImpl(LoginView loginView, LoginInteractor loginInteractor) {
         this.loginView = loginView;
         this.loginInteractor = loginInteractor;
     }
@@ -40,8 +38,8 @@ public class LoginPresenterImpl implements LoginPresenter/*, LoginInteractor.OnL
             loginView.showProgress();
         }
 
-    String username=loginView.getetUserName();
-    String password=loginView.getetPassword();
+    String username=loginView.getUserName();
+    String password=loginView.getPassword();
         boolean isLogged;
 
         if (TextUtils.isEmpty(username)){

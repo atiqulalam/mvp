@@ -1,6 +1,6 @@
 package com.mvp;
 
-import com.mvp.interactor.LoginInteractorImpl;
+import com.mvp.interactor.LoginInteractor;
 import com.mvp.interactor.presenter.LoginPresenterImpl;
 import com.mvp.view.LoginView;
 
@@ -11,8 +11,6 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertNull;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -21,7 +19,7 @@ public class LoginPresenterTest extends BaseUnitTest{
     @Mock
     LoginView view;
     @Mock
-    LoginInteractorImpl interactor;
+    LoginInteractor interactor;
 
     private LoginPresenterImpl presenter;
 
@@ -32,7 +30,7 @@ public class LoginPresenterTest extends BaseUnitTest{
 
     @Test
     public void shouldShowErrorMessageWhenUserNameIsEmpty() throws  Exception{
-        when(view.getetUserName()).thenReturn("");
+        when(view.getUserName()).thenReturn("");
         presenter.onLoginClicked();
         verify(view).showUsernameError("Username is empty");
     }
@@ -40,8 +38,8 @@ public class LoginPresenterTest extends BaseUnitTest{
 
     @Test
     public void shouldShowErrorMessageWhenPasswordIsEmpty() throws  Exception{
-        when(view.getetUserName()).thenReturn("Atiq");
-        when(view.getetPassword()).thenReturn("");
+        when(view.getUserName()).thenReturn("Atiq");
+        when(view.getPassword()).thenReturn("");
         presenter.onLoginClicked();
         verify(view).showPasswordError("password is empty");
     }
@@ -49,8 +47,8 @@ public class LoginPresenterTest extends BaseUnitTest{
 
     @Test
     public void shouldStartMainActivityWhenUserNameAndPasswordAreCorrect() throws Exception {
-        when(view.getetUserName()).thenReturn("Atiq");
-        when(view.getetPassword()).thenReturn("Alam");
+        when(view.getUserName()).thenReturn("Atiq");
+        when(view.getPassword()).thenReturn("Alam");
         when(interactor.login("Atiq","Alam")).thenReturn(true);
         presenter.onLoginClicked();
         verify(view).navigateToHome();

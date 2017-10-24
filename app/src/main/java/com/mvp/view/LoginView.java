@@ -32,7 +32,7 @@ public interface LoginView {
     void navigateToHome();
 
     void loginFail();
-    String getetUserName();
-    String getetPassword();
+    String getUserName();
+    String getPassword();
     void showMessage(String msg);
 }
