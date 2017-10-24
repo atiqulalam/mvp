@@ -25,7 +25,7 @@ import static org.hamcrest.Matchers.allOf;
  */
 
 @RunWith(AndroidJUnit4.class)
-public class LoginTest {
+public class LoginActivityTest {
 
 
     private String mName;

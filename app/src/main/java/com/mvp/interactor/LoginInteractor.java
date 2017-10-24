@@ -21,7 +21,7 @@ public class LoginInteractor {
         final User user=new User(username,password);
 
 
-        if (username.equals("Atiq") && password.equals("Alam")){
+        if (username.equalsIgnoreCase("Atiq") && password.equalsIgnoreCase("Alam")){
             MvpPreferencesManager.getInstance().setLogin(true);
             isSuccess =true;
         }else {

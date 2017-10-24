@@ -22,7 +22,7 @@ import android.text.TextUtils;
 import com.mvp.interactor.LoginInteractor;
 import com.mvp.view.LoginView;
 
-public class LoginPresenterImpl implements LoginPresenter/*, LoginInteractor.OnLoginFinishedListener*/ {
+public class LoginPresenterImpl implements LoginPresenter {
 
     private LoginView loginView;
     private LoginInteractor loginInteractor;
@@ -95,37 +95,6 @@ public class LoginPresenterImpl implements LoginPresenter/*, LoginInteractor.OnL
     public void onResume() {
 
     }
-
-   /* @Override
-    public void onUsernameError(String error) {
-        if (loginView != null) {
-            loginView.showUsernameError(error);
-            loginView.hideProgress();
-        }
-    }
-
-    @Override
-    public void onPasswordError(String error) {
-        if (loginView != null) {
-            loginView.showPasswordError(error);
-            loginView.hideProgress();
-        }
-    }
-
-    @Override
-    public void onLoginSuccess() {
-        if (loginView != null) {
-            loginView.navigateToHome();
-        }
-    }
-
-    @Override
-    public void onLoginFail() {
-        if (loginView != null) {
-            loginView.loginFail();
-        }
-    }*/
-
 
     public LoginView getLoginView() {
         return loginView;
